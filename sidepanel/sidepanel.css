@@ -1,0 +1,391 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #f9fafb;
+  color: #1f2937;
+  width: 100%;
+  min-width: 340px;
+  max-width: 450px;
+  overflow-x: hidden;
+  font-size: 13px;
+}
+
+/* Header */
+.app-header {
+  height: 56px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  background: #f3f4f6;
+  color: #3b82f6;
+}
+
+/* Main Container */
+.main-container {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Card */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.card-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon.blue {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
+.card-icon.purple {
+  background: #f3e8ff;
+  color: #9333ea;
+}
+
+.card-title-group h2 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: 0.3px;
+}
+
+.card-title-group p {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* Form inputs */
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  font-size: 13px;
+  color: #1f2937;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #3b82f6;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.unit-price-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eff6ff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #1e40af;
+}
+
+.error-text {
+  font-size: 11px;
+  color: #ef4444;
+  margin-top: 4px;
+  min-height: 14px;
+}
+
+/* Toggle Services */
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid #f3f4f6;
+  border-radius: 10px;
+  background: #ffffff;
+  transition: all 0.2s;
+}
+
+.service-item.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.service-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.service-price {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* Bee Tools Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #e5e7eb;
+  transition: .3s;
+  border-radius: 22px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+/* Discount Group */
+.discount-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.status-box {
+  font-size: 11px;
+  margin-top: 6px;
+  color: #10b981;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.btn {
+  height: 42px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.25);
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+.btn-outline {
+  background: #ffffff;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+}
+
+.btn-outline:hover {
+  background: #f9fafb;
+  color: #111827;
+  border-color: #9ca3af;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Invoice Section */
+.invoice-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+  color: #9ca3af;
+  gap: 8px;
+  text-align: center;
+}
+
+.invoice-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.invoice-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.invoice-row strong, .invoice-row span:last-child {
+  color: #111827;
+}
+
+.text-green {
+  color: #10b981 !important;
+}
+
+.text-green span:last-child {
+  color: #10b981 !important;
+  font-weight: 600;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 6px 0;
+}
+
+.total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.total-badge {
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+}

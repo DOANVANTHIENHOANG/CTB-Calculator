@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinema Ticket Calculator</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="app-logo">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ffffff">
+          <path d="M7 6H17C17.55 6 18 6.45 18 7V9C17 9 16 10 16 11C16 12 17 13 18 14V17C18 17.55 17.55 18 17 18H7C6.45 18 6 17.55 6 17V14C7 14 8 13 8 11C8 10 7 9 6 9V7C6 6.45 6.45 6 7 6Z"/>
+        </svg>
+      </div>
+      <h1 class="app-title">Cinema Ticket Calculator</h1>
+    </div>
+    <button id="header-reset-btn" class="icon-btn" title="Đặt lại">
+      <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+        <path d="M3 3v5h5"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-container">
+
+    <!-- Card 1: Thông tin vé xem phim -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-icon blue">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M4 6h16v12H4z"/>
+          </svg>
+        </div>
+        <div class="card-title-group">
+          <h2>THÔNG TIN ĐẶT VÉ</h2>
+          <p>Lựa chọn loại ghế & số lượng vé</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="seat-select">Loại ghế</label>
+        <select id="seat-select" data-testid="seat-select" class="form-control">
+          <option value="">-- Chọn loại ghế --</option>
+          <option value="seat_standard">Ghế tiêu chuẩn (80.000đ/vé)</option>
+          <option value="seat_vip">Ghế VIP (100.000đ/vé)</option>
+          <option value="seat_sweetbox">Ghế Sweetbox (180.000đ/vé)</option>
+        </select>
+        <div id="seat-error" data-testid="seat-error" class="error-text"></div>
+      </div>
+
+      <div class="unit-price-box">
+        <span>Đơn giá vé:</span>
+        <strong id="unit-price-display" data-testid="unit-price-display">0đ/vé</strong>
+      </div>
+
+      <div class="form-group">
+        <label for="ticket-quantity">Số lượng vé (1 - 10 vé)</label>
+        <input type="text" id="ticket-quantity" data-testid="ticket-quantity" class="form-control" placeholder="Nhập số lượng vé" value="1">
+        <div id="quantity-error" data-testid="quantity-error" class="error-text"></div>
+      </div>
+    </section>
+
+    <!-- Card 2: Dịch vụ & Trải nghiệm bổ sung -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-icon purple">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <div class="card-title-group">
+          <h2>DỊCH VỤ BỔ SUNG</h2>
+          <p>Tùy chọn trải nghiệm đi kèm</p>
+        </div>
+      </div>
+
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-info">
+            <span class="service-name">Suất chiếu 3D / IMAX</span>
+            <span class="service-price">40.000đ/vé</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="service-imax" data-testid="service-imax">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <span class="service-name">Combo Bắp Nước Family</span>
+            <span class="service-price">70.000đ/lần đặt</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="service-combo" data-testid="service-combo">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="service-item" id="student-service-row">
+          <div class="service-info">
+            <span class="service-name">Ưu đãi HSSV U22</span>
+            <span class="service-price">Giảm 20% (Chỉ áp dụng Ghế thường & VIP)</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="service-student" data-testid="service-student">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Card 3: Mã giảm giá -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-icon blue">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/>
+          </svg>
+        </div>
+        <div class="card-title-group">
+          <h2>MÃ GIẢM GIÁ</h2>
+          <p>Hỗ trợ mã CINE10, CINE20, FIXED50</p>
+        </div>
+      </div>
+
+      <div class="discount-input-group">
+        <input type="text" id="discount-input" data-testid="discount-input" class="form-control" placeholder="Nhập mã giảm giá">
+        <button id="apply-discount-btn" data-testid="apply-discount-btn" class="btn btn-primary" type="button">ÁP DỤNG</button>
+      </div>
+      <div id="discount-status" data-testid="discount-status" class="status-box"></div>
+      <div id="discount-error" data-testid="discount-error" class="error-text"></div>
+    </section>
+
+    <!-- Các nút chức năng -->
+    <div class="action-buttons">
+      <button id="calculate-btn" data-testid="calculate-btn" class="btn btn-primary btn-block">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+        TÍNH TIỀN VÉ
+      </button>
+
+      <button id="reset-btn" data-testid="reset-btn" class="btn btn-outline btn-block">
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        ĐẶT LẠI
+      </button>
+    </div>
+
+    <!-- Card 4: Chi tiết thanh toán / Hóa đơn -->
+    <section id="invoice-card" class="card invoice-card">
+      <div class="card-header">
+        <div class="card-icon blue">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+          </svg>
+        </div>
+        <div class="card-title-group">
+          <h2>CHI TIẾT THANH TOÁN</h2>
+          <p>Bảng kê chi tiết tiền vé & dịch vụ</p>
+        </div>
+      </div>
+
+      <!-- Trạng thái trống khi chưa tính tiền -->
+      <div id="invoice-empty" class="invoice-empty">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="#9ca3af">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+        <p>Vui lòng chọn thông tin và nhấn "TÍNH TIỀN VÉ"</p>
+      </div>
+
+      <!-- Khối chi tiết hóa đơn xuất hiện sau khi tính -->
+      <div id="invoice-content" data-testid="invoice-content" class="invoice-content" style="display: none;">
+        <div class="invoice-row">
+          <span>Loại ghế:</span>
+          <strong id="inv-seat-name" data-testid="inv-seat-name">-</strong>
+        </div>
+        <div class="invoice-row">
+          <span>Đơn giá:</span>
+          <span id="inv-unit-price" data-testid="inv-unit-price">0đ</span>
+        </div>
+        <div class="invoice-row">
+          <span>Số lượng:</span>
+          <span id="inv-quantity" data-testid="inv-quantity">0 vé</span>
+        </div>
+        <div class="invoice-row">
+          <span>Tiền vé gốc:</span>
+          <span id="inv-base-total" data-testid="inv-base-total">0đ</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="invoice-row">
+          <span>Phụ thu IMAX:</span>
+          <span id="inv-fee-imax" data-testid="inv-fee-imax">0đ</span>
+        </div>
+        <div class="invoice-row">
+          <span>Combo bắp nước:</span>
+          <span id="inv-fee-combo" data-testid="inv-fee-combo">0đ</span>
+        </div>
+        <div class="invoice-row text-green">
+          <span>Giảm giá HSSV U22:</span>
+          <span id="inv-discount-student" data-testid="inv-discount-student">0đ</span>
+        </div>
+        <div class="invoice-row">
+          <span>Mã giảm giá:</span>
+          <span id="inv-discount-code" data-testid="inv-discount-code">Không áp dụng</span>
+        </div>
+        <div class="invoice-row text-green">
+          <span>Tiền voucher giảm:</span>
+          <span id="inv-discount-amount" data-testid="inv-discount-amount">0đ</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="total-row">
+          <span>TỔNG THANH TOÁN:</span>
+          <span id="inv-total-payment" data-testid="inv-total-payment" class="total-badge">0đ</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Load script logic theo thứ tự -->
+  <script src="../js/constants.js"></script>
+  <script src="../js/validation.js"></script>
+  <script src="../js/discount.js"></script>
+  <script src="../js/calculator.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>

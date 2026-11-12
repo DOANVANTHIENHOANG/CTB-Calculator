@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Cinema Ticket Calculator",
+  "version": "1.0",
+  "description": "Hệ thống tính tiền vé xem phim hỗ trợ kiểm thử tự động",
+  "permissions": ["sidePanel"],
+  "side_panel": {
+    "default_path": "sidepanel/sidepanel.html"
+  },
+  "action": {
+    "default_title": "Mở Cinema Calculator"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "assets/icons/icon.svg",
+    "48": "assets/icons/icon.svg",
+    "128": "assets/icons/icon.svg"
+  }
+}
